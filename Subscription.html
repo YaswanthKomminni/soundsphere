@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Sphere - Subscription</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #6e8efb, #a777e3, #5a7be0, #9370DB);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .logo h1 {
+            font-size: 2.5rem;
+            color: white;
+            text-shadow: 0 0 10px rgba(0,0,0,0.2);
+            margin: 0;
+        }
+        
+        .logo p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            width: 100%;
+            max-width: 500px;
+            transform: translateY(0);
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            position: relative;
+        }
+        
+        h2:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, #6e8efb, #a777e3);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+        
+        .promo-banner {
+            background: linear-gradient(45deg, #ff7676, #f54ea2);
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% {
+                background-position: -100% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+        
+        fieldset {
+            border: none;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        fieldset:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        legend {
+            font-weight: bold;
+            color: #6e8efb;
+            padding: 0 10px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            position: relative;
+        }
+        
+        legend:before {
+            content: '♪';
+            margin-right: 8px;
+            color: #a777e3;
+        }
+        
+        label {
+            display: block;
+            margin: 15px 0 8px;
+            font-weight: 500;
+            color: #444;
+            transform: translateX(0);
+            transition: transform 0.3s, color 0.3s;
+        }
+        
+        input:focus + label, select:focus + label {
+            color: #6e8efb;
+            transform: translateX(5px);
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+        
+        input:focus, select:focus {
+            border-color: #6e8efb;
+            box-shadow: 0 0 0 3px rgba(110, 142, 251, 0.2);
+        }
+        
+        .plan-options {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .plan-option {
+            flex: 1;
+            background: #f9f9f9;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .plan-option:hover {
+            transform: translateY(-5px);
+            border-color: #6e8efb;
+        }
+        
+        .plan-option.selected {
+            border-color: #6e8efb;
+            background: rgba(110, 142, 251, 0.1);
+        }
+        
+        .plan-name {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .plan-price {
+            font-size: 1.2rem;
+            color: #6e8efb;
+            margin: 5px 0;
+        }
+        
+        .plan-features {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .payment-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .payment-option {
+            flex: 1;
+            min-width: calc(50% - 10px);
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-option:hover {
+            border-color: #6e8efb;
+            background: rgba(110, 142, 251, 0.05);
+        }
+        
+        .payment-option.selected {
+            border-color: #6e8efb;
+            background: rgba(110, 142, 251, 0.1);
+        }
+        
+        .hidden-fields {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .hidden-fields.visible {
+            max-height: 300px;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #6e8efb, #a777e3);
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(110, 142, 251, 0.4);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button:hover {
+            box-shadow: 0 8px 25px rgba(110, 142, 251, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        button:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        button:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            20% {
+                transform: scale(25, 25);
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(40, 40);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                width: 90%;
+            }
+            
+            .plan-options, .payment-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <h1>Sound Sphere</h1>
+        <p>Elevate Your Audio Experience</p>
+    </div>
+    
+    <div class="container">
+        <div class="promo-banner">
+            Subscribe Now and Enjoy Unlimited Music on Sound Sphere!
+        </div>
+        
+        <h2>Join Our Music Community</h2>
+        
+        <form id="subscription-form">
+            <fieldset>
+                <legend>Personal Information</legend>
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+            </fieldset>
+            
+            <fieldset>
+                <legend>Choose Your Plan</legend>
+                <div class="plan-options">
+                    <div class="plan-option" data-plan="basic" onclick="selectPlan('basic')">
+                        <div class="plan-name">Basic</div>
+                        <div class="plan-price">$5/month</div>
+                        <div class="plan-features">Ad-free music</div>
+                    </div>
+                    
+                    <div class="plan-option" data-plan="standard" onclick="selectPlan('standard')">
+                        <div class="plan-name">Standard</div>
+                        <div class="plan-price">$10/month</div>
+                        <div class="plan-features">Ad-free + Offline</div>
+                    </div>
+                    
+                    <div class="plan-option" data-plan="premium" onclick="selectPlan('premium')">
+                        <div class="plan-name">Premium</div>
+                        <div class="plan-price">$15/month</div>
+                        <div class="plan-features">Everything + Hi-Fi</div>
+                    </div>
+                </div>
+                <input type="hidden" id="selected-plan" name="plan" value="" required>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Payment Method</legend>
+                <div class="payment-options">
+                    <div class="payment-option" data-payment="credit" onclick="selectPayment('credit')">Credit Card</div>
+                    <div class="payment-option" data-payment="debit" onclick="selectPayment('debit')">Debit Card</div>
+                    <div class="payment-option" data-payment="phonepay" onclick="selectPayment('phonepay')">PhonePe</div>
+                    <div class="payment-option" data-payment="googlepay" onclick="selectPayment('googlepay')">Google Pay</div>
+                    <div class="payment-option" data-payment="amazonpay" onclick="selectPayment('amazonpay')">Amazon Pay</div>
+                    <div class="payment-option" data-payment="paytm" onclick="selectPayment('paytm')">Paytm</div>
+                    <div class="payment-option" data-payment="bank" onclick="selectPayment('bank')">Bank Transfer</div>
+                </div>
+                <input type="hidden" id="selected-payment" name="payment" value="" required>
+                
+                <div id="card-fields" class="hidden-fields">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" name="card-number" placeholder="XXXX XXXX XXXX XXXX">
+                    
+                    <div style="display: flex; gap: 15px;">
+                        <div style="flex: 2;">
+                            <label for="expiry">Expiry Date</label>
+                            <input type="month" id="expiry" name="expiry">
+                        </div>
+                        <div style="flex: 1;">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" name="cvv" placeholder="XXX" maxlength="3">
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="upi-field" class="hidden-fields">
+                    <label for="upi">UPI ID</label>
+                    <input type="text" id="upi" name="upi" placeholder="username@bankname">
+                </div>
+                
+                <div id="bank-field" class="hidden-fields">
+                    <label for="ifsc">IFSC Code</label>
+                    <input type="text" id="ifsc" name="ifsc" placeholder="Enter IFSC code">
+                    
+                    <label for="account">Account Number</label>
+                    <input type="text" id="account" name="account" placeholder="Enter account number">
+                </div>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Referral Details</legend>
+                <label for="bank">Bank Name & Account No.</label>
+                <input type="text" id="bank" name="bank" required placeholder="Bank name & account number for referrals">
+            </fieldset>
+            
+            <button type="submit" id="submit-btn">Start Your Subscription</button>
+        </form>
+    </div>
+
+    <script>
+        // Plan selection
+        function selectPlan(planType) {
+            const planOptions = document.querySelectorAll('.plan-option');
+            planOptions.forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            document.querySelector(`.plan-option[data-plan="${planType}"]`).classList.add('selected');
+            document.getElementById('selected-plan').value = planType;
+        }
+        
+        // Payment method selection
+        function selectPayment(paymentType) {
+            const paymentOptions = document.querySelectorAll('.payment-option');
+            paymentOptions.forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            document.querySelector(`.payment-option[data-payment="${paymentType}"]`).classList.add('selected');
+            document.getElementById('selected-payment').value = paymentType;
+            
+            // Hide all payment fields
+            document.getElementById('card-fields').classList.remove('visible');
+            document.getElementById('upi-field').classList.remove('visible');
+            document.getElementById('bank-field').classList.remove('visible');
+            
+            // Show relevant fields based on selection
+            if (paymentType === 'credit' || paymentType === 'debit') {
+                document.getElementById('card-fields').classList.add('visible');
+            } else if (paymentType === 'phonepay' || paymentType === 'googlepay' || paymentType === 'amazonpay' || paymentType === 'paytm') {
+                document.getElementById('upi-field').classList.add('visible');
+            } else if (paymentType === 'bank') {
+                document.getElementById('bank-field').classList.add('visible');
+            }
+        }
+        
+        // Form submission with animation
+        document.getElementById('subscription-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const button = document.getElementById('submit-btn');
+            button.innerHTML = 'Processing...';
+            button.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                alert('Subscription successful! Welcome to Sound Sphere.');
+                button.innerHTML = 'Start Your Subscription';
+                button.disabled = false;
+            }, 2000);
+        });
+        
+        // Add animation to fields on focus
+        const inputs = document.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentNode.style.transform = 'translateX(5px)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentNode.style.transform = 'translateX(0)';
+            });
+        });
+        
+        // Set default plan
+        window.onload = function() {
+            selectPlan('standard');
+        };
+    </script>
+</body>
+</html>

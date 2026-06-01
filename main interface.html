@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundSphere</title>
+    <style>
+        
+        body {
+            font-family: 'Circular', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('pexels-daniel-reche-718241-3721941.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        
+        .container {
+            width: 400px;
+            background: rgba(24, 24, 24, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            animation: slideIn 1.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        
+        h1 {
+            color: #1d8ab9;
+            margin-bottom: 20px;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #b9561d; }
+            to { text-shadow: 0 0 20px #b9781d; }
+        }
+
+       
+        nav a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s, transform 0.3s;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            color: #1d95b9;
+            transform: scale(1.1);
+            text-shadow: 0 0 10px #1dacb9;
+        }
+
+        
+        .content {
+            margin-top: 20px;
+        }
+
+       
+        .search-bar input {
+            width: 90%;
+            padding: 10px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            background-color: #282828;
+            color: white;
+            text-align: center;
+            transition: box-shadow 0.3s;
+        }
+
+        .search-bar input:focus {
+            box-shadow: 0 0 10px #b6b91d;
+        }
+
+        
+        .songs-list {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .songs-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .songs-list ul li {
+            padding: 10px;
+            background: #282828;
+            margin-top: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .songs-list ul li:hover {
+            background: aquamarine;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #1db99c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SoundSphere</h1>
+        <nav>
+            
+            
+            <a href="C:\SoundSphere\Signup.html" id="login-link">Login</a>
+            <a href="C:\SoundSphere\Signup.html" id="signup-link">Signup</a>
+        </nav>
+        <div class="content" id="content">
+            <p>Browse and play your favorite songs.</p>
+        </div>
+    </div>
+   
+</body>
+</html>
